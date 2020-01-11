@@ -1,17 +1,18 @@
 #include "libmx.h"
 
 void *mx_memmem(const void *big, size_t big_len, const void *little, size_t little_len) {
-    unsigned char *huge = (unsigned char*)big;
-    unsigned char *small = (unsigned char*)little;
+    char *bi = (char*)big;
+    char *li = (char*)little;
+    size_t len_l = mx_strlen(little);
 
-    if (big_len < little_len)
+    if (big_len < little_len || len_l != little_len) {
         return NULL;
-
-    while (big_len >= little_len) {
-        huge++;
-        big_len--;
-        if (mx_memcmp(huge, small, little_len) != 0)
-            return huge + 1;
+    }
+    while (big_len) {
+        bi++;
+        if (mx_strncmp(bi, li, little_len) == 0) {
+            return bi;
+        }
     }
     return NULL;
 }

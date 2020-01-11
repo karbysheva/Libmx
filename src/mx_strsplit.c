@@ -14,25 +14,25 @@ static int mx_str_len(const char *s, char c) {
 }
 
 char **mx_strsplit(const char *s, char c) {
-	size_t i_str = 0;
+	size_t i = 0;
 	int j = 0;
 	int a;
 	size_t size_s = mx_count_words(s, c);
 	char **result = (char **)malloc((size_s + 1) * sizeof(char *));
 
-	if(!s)
+	if (!s)
 		return NULL;
-	while (i_str < size_s) {
+	while (i < size_s) {
 		a = 0;	
-		result[i_str] = mx_strnew(mx_str_len(&s[j], c));
+		result[i] = mx_strnew(mx_str_len(&s[j], c));
 		while (s[j] == c)
 			j++;
 		while (s[j] != c && s[j])
-			result[i_str][a++] = s[j++];
-		result[i_str][a] = '\0';
-		i_str++;
+			result[i][a++] = s[j++];
+		result[i][a] = '\0';
+		i++;
 	}
-	result[i_str] = NULL;
+	result[i] = NULL;
 	return result;
 }
 

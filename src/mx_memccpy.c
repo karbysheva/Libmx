@@ -5,16 +5,14 @@ void *mx_memccpy(void *restrict dst, const void *restrict src, int c, size_t n) 
 	unsigned char *tempsrc = (unsigned char*)src;
 	size_t i = 0;
 
-	while (tempsrc[i]) {
-		if (tempsrc[i] == c) {
-			tempdst[i] = tempsrc[i];
-			break;
-		}
+	while (i < n) {
 		tempdst[i] = tempsrc[i];
 		i++;
-		if (i >= n)
-			return 0;
+		if (tempsrc[i] == c) {
+			tempdst[i] = tempsrc[i];
+			return &tempdst[i + 1];
+		}
 	}
-	return dst;
+	return NULL;
 }
 

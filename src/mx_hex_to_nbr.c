@@ -1,39 +1,25 @@
 #include "libmx.h"
 
 unsigned long mx_hex_to_nbr(const char *hex) {
-	long numHex = 16;
-	long result = 0;
-	long lengh = 0;
-
-    while (hex[lengh]) {
-        lengh++;
+    unsigned long degree = 1;
+    unsigned long nbr = 0;
+    
+    if (!hex)
+        return 0;
+    for (int i = mx_strlen(hex); i >= 0; i--) {
+        if (hex[i] >= '0' && hex[i] <= '9') {
+            nbr += (hex[i] - 48) * degree;
+            degree *= 16;
+        }
+        if (hex[i] >= 'a' && hex[i] <= 'f') {
+             nbr += (hex[i] - 87) * degree;
+            degree *= 16;
+        }
+        if (hex[i] >= 'A' && hex[i] <= 'F') {
+             nbr += (hex[i] - 55) * degree;
+            degree *= 16;
+        }
     }
-    long walk = lengh - 1;
-    for (long i = 0; i < lengh; i++) {
-    		
-    	long asci = hex[i];
-    	long number = 0;
-    	if (asci >= 48 && asci <= 57) {
-    		number = hex[i] - '0';
-    	} else if (asci >= 65 && asci <= 70) {
-    		number = asci - 65 + 10;
-    	} else if (asci >= 97 && asci <= 102) {
-    		number = asci - 97 + 10;
-    	}
-
-    	long pow = 1;
-    	if (walk > 0) {
-	    	for (long n = 0; n < walk; n++) {
-	    		pow = pow * numHex;
-	    	}
-	    	walk--;
-    	} else if (walk == 0) {
-    		pow = 1;
-    	}
-
-    	long temp = pow * number;
-    	result += temp;
-    }
-    return result;
+    return nbr;
 }
 

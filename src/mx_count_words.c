@@ -6,12 +6,13 @@ int mx_count_words(const char *str, char c) {
 	if (!str)
 		return -1;
     
-     while (*str) {
-        while (*str == c) 
-            str++;
+    while (*str) {
+        if (*str != c && *str)
             count++;
-            while (*str != c && *str != '\0')
-                str++;
+        while (*str != c && *str)
+            str++;
+        while (*str == c && *str) 
+            str++;
     }
     return count;
 }

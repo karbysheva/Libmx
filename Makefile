@@ -55,6 +55,7 @@ SRCS = src/mx_printchar.c \
 	src/mx_realloc.c \
 	src/mx_quicksort.c \
 	src/mx_itoa.c \
+	src/mx_read_line.c \
 
 OBJC = obj/mx_printchar.c \
 	obj/mx_print_unicode.c \
@@ -111,6 +112,7 @@ OBJC = obj/mx_printchar.c \
 	obj/mx_realloc.c \
 	obj/mx_quicksort.c \
 	obj/mx_itoa.c \
+	obj/mx_read_line.c \
 
 OBJ = obj/mx_printchar.o \
 	obj/mx_print_unicode.o \
@@ -167,7 +169,7 @@ OBJ = obj/mx_printchar.o \
 	obj/mx_realloc.o \
 	obj/mx_quicksort.o \
 	obj/mx_itoa.o \
-
+	obj/mx_read_line.o \
 
 	
 INC = inc/libmx.h

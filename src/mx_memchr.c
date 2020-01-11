@@ -9,7 +9,7 @@ void *mx_memchr(const void *s, int c, size_t n) {
 	}
 	if (c == news[i]) {
 		return (unsigned char*)news + i;
-	}else{
+	} else {
 		return NULL;
 	}
 }
